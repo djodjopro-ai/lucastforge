@@ -1,16 +1,16 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="sr">
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>LucastForge | Freelance Web Design, Development & AI Agents</title>
-  <meta name="description" content="LucastForge is a freelance web design and development studio. Custom websites, fullstack development, AI agents, SEO optimization, automation, and brand identity. Hand-coded, pixel-perfect builds that convert visitors into customers.">
+  <title>LucastForge | Izrada Sajtova, Web Razvoj i AI Agenti</title>
+  <meta name="description" content="LucastForge je freelance studio za dizajn i izradu sajtova. Prilagodjeni sajtovi, fullstack razvoj, AI agenti, SEO optimizacija, automatizacija i vizuelni identitet brenda. Rucno kodiran, piksel-precizan razvoj koji pretvara posetioce u klijente.">
   <meta name="robots" content="index, follow">
   <meta name="theme-color" content="#050510">
 
   <!-- OG Tags -->
-  <meta property="og:title" content="LucastForge | Freelance Web Design, Development & AI Agents">
-  <meta property="og:description" content="Custom websites, fullstack development, AI agents, SEO optimization, and automation. Hand-coded, pixel-perfect builds that convert.">
+  <meta property="og:title" content="LucastForge | Izrada Sajtova, Web Razvoj i AI Agenti">
+  <meta property="og:description" content="Prilagodjeni sajtovi, fullstack razvoj, AI agenti, SEO optimizacija i automatizacija. Rucno kodiran, piksel-precizan razvoj.">
   <meta property="og:type" content="website">
   <meta property="og:image" content="https://lucastforge.com/images/og-card.webp">
   <meta property="og:url" content="https://lucastforge.com">
@@ -18,8 +18,8 @@
 
   <!-- Twitter Card -->
   <meta name="twitter:card" content="summary_large_image">
-  <meta name="twitter:title" content="LucastForge | Freelance Web Design, Development & AI Agents">
-  <meta name="twitter:description" content="Custom websites, fullstack development, AI agents, SEO optimization, and automation. Hand-coded, pixel-perfect builds that convert.">
+  <meta name="twitter:title" content="LucastForge | Izrada Sajtova, Web Razvoj i AI Agenti">
+  <meta name="twitter:description" content="Prilagodjeni sajtovi, fullstack razvoj, AI agenti, SEO optimizacija i automatizacija. Rucno kodiran, piksel-precizan razvoj.">
   <meta name="twitter:image" content="https://lucastforge.com/images/og-card.webp">
 
   <!-- Canonical -->
@@ -244,6 +244,33 @@
     .nav-cta:hover .arrow-circle {
       transform: translateX(2px) translateY(-1px) scale(1.05);
       background: rgba(10, 15, 30, 0.3);
+    }
+
+    /* Language toggle */
+    .lang-toggle {
+      font-family: 'IBM Plex Mono', monospace;
+      font-size: 0.6875rem;
+      font-weight: 600;
+      letter-spacing: 0.05em;
+      color: #8896AB;
+      background: rgba(255, 255, 255, 0.06);
+      border: 1px solid rgba(255, 255, 255, 0.08);
+      padding: 0.375rem 0.75rem;
+      border-radius: 9999px;
+      cursor: pointer;
+      transition: all 400ms cubic-bezier(0.32, 0.72, 0, 1);
+      white-space: nowrap;
+      display: flex;
+      align-items: center;
+      gap: 0.25rem;
+    }
+    .lang-toggle:hover {
+      color: #E8ECF4;
+      background: rgba(255, 255, 255, 0.1);
+      border-color: rgba(255, 255, 255, 0.15);
+    }
+    .lang-toggle .lang-active {
+      color: #a680ff;
     }
 
     /* Mobile hamburger */
@@ -1105,7 +1132,9 @@
         box-shadow: none;
       }
       .nav-pill > .font-sans { display: none; }
+      .nav-pill > .lang-toggle { display: none; }
       .nav-cta-desktop { display: none; }
+      .mobile-lang-toggle { display: flex !important; }
 
       .hero { padding: 6rem 1rem 3rem; }
       .hero-brand-name { font-size: clamp(3rem, 14vw, 5rem); }
@@ -1165,9 +1194,9 @@
 
   <noscript>
     <div style="padding: 2rem; text-align: center; background: #050510; color: #E8ECF4; font-family: sans-serif;">
-      <h1>LucastForge - Freelance Web Design, Development & AI Agents</h1>
-      <p>Custom websites, fullstack development, AI agents, SEO optimization, automation, and brand identity. Hand-coded, pixel-perfect builds that convert visitors into customers.</p>
-      <p>Services: UI/UX Design, Fullstack Development, AI Agents, SEO Optimization, Brand Identity, Automation</p>
+      <h1>LucastForge - Izrada Sajtova, Web Razvoj i AI Agenti</h1>
+      <p>Prilagodjeni sajtovi, fullstack razvoj, AI agenti, SEO optimizacija, automatizacija i vizuelni identitet brenda.</p>
+      <p>Usluge: UI/UX Dizajn, Fullstack Razvoj, AI Agenti, SEO Optimizacija, Vizuelni Identitet, Automatizacija</p>
       <p>Contact: <a href="mailto:ivosevic@lucastforge.com" style="color: #a680ff;">ivosevic@lucastforge.com</a></p>
     </div>
   </noscript>
@@ -1188,22 +1217,32 @@
 
   <!-- Mobile Menu Overlay -->
   <div class="mobile-menu" id="mobileMenu">
-    <a href="#work" onclick="closeMobileMenu()">Portfolio</a>
-    <a href="#services" onclick="closeMobileMenu()">Services</a>
-    <a href="#about" onclick="closeMobileMenu()">About</a>
-    <a href="#contact" onclick="closeMobileMenu()" class="mobile-menu-cta">Let's Talk</a>
+    <a href="#work" onclick="closeMobileMenu()" data-i18n="nav.portfolio">Portfolio</a>
+    <a href="#services" onclick="closeMobileMenu()" data-i18n="nav.services">Usluge</a>
+    <a href="#about" onclick="closeMobileMenu()" data-i18n="nav.about">O meni</a>
+    <a href="#contact" onclick="closeMobileMenu()" class="mobile-menu-cta" data-i18n="nav.cta">Razgovarajmo</a>
+    <button class="lang-toggle mobile-lang-toggle" onclick="toggleLang()" style="display:none; margin-top:1rem; font-size:0.875rem; padding:0.5rem 1.25rem;" aria-label="Switch language">
+      <span id="langSrMobile" class="lang-active">SR</span>
+      <span style="color:#3A4A5E">/</span>
+      <span id="langEnMobile">EN</span>
+    </button>
   </div>
 
   <!-- Floating Pill Nav -->
   <nav class="nav-pill" id="navPill">
     <a href="#home" class="nav-logo" style="text-decoration:none;"><span class="nav-logo-lucast">Lucast</span><span class="nav-logo-forge">Forge</span></a>
     <div class="nav-links flex items-center gap-0.5 ml-6">
-      <a href="#work" class="nav-link">Portfolio</a>
-      <a href="#services" class="nav-link">Services</a>
-      <a href="#about" class="nav-link">About</a>
+      <a href="#work" class="nav-link" data-i18n="nav.portfolio">Portfolio</a>
+      <a href="#services" class="nav-link" data-i18n="nav.services">Usluge</a>
+      <a href="#about" class="nav-link" data-i18n="nav.about">O meni</a>
     </div>
+    <button class="lang-toggle ml-2" id="langToggle" onclick="toggleLang()" aria-label="Switch language">
+      <span id="langSr" class="lang-active">SR</span>
+      <span style="color:#3A4A5E">/</span>
+      <span id="langEn">EN</span>
+    </button>
     <a href="#contact" class="nav-cta nav-cta-desktop ml-2">
-      Let's Talk
+      <span data-i18n="nav.cta">Razgovarajmo</span>
       <span class="arrow-circle">&#8599;</span>
     </a>
     <button class="hamburger" id="hamburger" aria-label="Menu">
@@ -1219,35 +1258,35 @@
     <div class="hero-content">
       <h1>
         <span class="hero-brand-line"><span class="hero-brand-name"><span class="brand-lucast">Lucast</span><span class="brand-forge">Forge</span></span></span>
-        <span class="sr-only">Freelance Web Design, Development & AI Agents Studio</span>
+        <span class="sr-only" data-i18n="hero.srOnly">Freelance studio za dizajn, izradu sajtova i AI agente</span>
       </h1>
 
       <div class="hero-divider"></div>
 
       <div class="hero-info-backdrop">
-        <span class="hero-service-chip">UI/UX Design</span>
-        <span class="hero-service-chip">Web Development</span>
-        <span class="hero-service-chip">Fullstack</span>
-        <span class="hero-service-chip">AI Agents</span>
-        <span class="hero-service-chip">SEO</span>
-        <span class="hero-service-chip">Automation</span>
+        <span class="hero-service-chip" data-i18n="hero.chip1">UI/UX Dizajn</span>
+        <span class="hero-service-chip" data-i18n="hero.chip2">Izrada Sajtova</span>
+        <span class="hero-service-chip" data-i18n="hero.chip3">Fullstack</span>
+        <span class="hero-service-chip" data-i18n="hero.chip4">AI Agenti</span>
+        <span class="hero-service-chip" data-i18n="hero.chip5">SEO</span>
+        <span class="hero-service-chip" data-i18n="hero.chip6">Automatizacija</span>
       </div>
 
       <div class="hero-subtitle-wrapper">
-        <span class="hero-subtitle active" data-subtitle="0">Crafting Digital Experiences</span>
-        <span class="hero-subtitle" data-subtitle="1">From Belgrade to the World</span>
-        <span class="hero-subtitle" data-subtitle="2">Design That Converts</span>
-        <span class="hero-subtitle" data-subtitle="3">Pixel-Perfect Builds</span>
+        <span class="hero-subtitle active" data-subtitle="0" data-i18n="hero.sub1">Stvaramo Digitalna Iskustva</span>
+        <span class="hero-subtitle" data-subtitle="1" data-i18n="hero.sub2">Iz Beograda za Ceo Svet</span>
+        <span class="hero-subtitle" data-subtitle="2" data-i18n="hero.sub3">Dizajn Koji Konvertuje</span>
+        <span class="hero-subtitle" data-subtitle="3" data-i18n="hero.sub4">Piksel-Precizna Izrada</span>
       </div>
     </div>
 
     <a href="#contact" class="hero-cta-mobile">
-      Let's Talk
+      <span data-i18n="nav.cta">Razgovarajmo</span>
       <span class="arrow-circle">&#8599;</span>
     </a>
 
     <div class="scroll-prompt" id="scrollPrompt">
-      <span>Scroll to explore</span>
+      <span data-i18n="hero.scroll">Skrolujte da istrazite</span>
       <div class="scroll-line"></div>
     </div>
   </section>
@@ -1259,10 +1298,10 @@
     <div class="max-w-6xl mx-auto">
       <div class="grid md:grid-cols-2 gap-16 items-center">
         <div class="reveal">
-          <div class="section-eyebrow">About</div>
-          <h2 class="section-heading mb-6">I build websites that <span class="text-muted">convert.</span></h2>
-          <p class="text-lg text-muted leading-relaxed max-w-lg">
-            Every pixel is intentional. Every interaction is choreographed. I don't build websites that just look good -- I build websites that work. From concept to deployment, obsessively crafted.
+          <div class="section-eyebrow" data-i18n="intro.eyebrow">O meni</div>
+          <h2 class="section-heading mb-6" data-i18n="intro.heading">Pravim sajtove koji <span class="text-muted">konvertuju.</span></h2>
+          <p class="text-lg text-muted leading-relaxed max-w-lg" data-i18n="intro.desc">
+            Svaki piksel je nameran. Svaka interakcija je koreografisana. Ne pravim sajtove koji samo dobro izgledaju -- pravim sajtove koji rade. Od koncepta do objave, opsesivno izradjeno.
           </p>
         </div>
         <div class="reveal" style="transition-delay: 150ms;">
@@ -1291,8 +1330,8 @@
   <section class="py-32 px-4 md:px-8" id="work">
     <div class="max-w-6xl mx-auto">
       <div class="reveal">
-        <div class="section-eyebrow">Portfolio</div>
-        <h2 class="section-heading mb-16">Projects</h2>
+        <div class="section-eyebrow" data-i18n="work.eyebrow">Portfolio</div>
+        <h2 class="section-heading mb-16" data-i18n="work.heading">Projekti</h2>
       </div>
 
       <!-- Project 1: Grifa -->
@@ -1301,9 +1340,9 @@
           <div class="project-number">01</div>
           <h3 class="project-name">Grifa</h3>
           <div class="project-tags">
-            <span class="project-tag">Web Design</span>
-            <span class="project-tag">Gallery</span>
-            <span class="project-tag">Serbian</span>
+            <span class="project-tag" data-i18n="tag.webDesign">Web Dizajn</span>
+            <span class="project-tag" data-i18n="tag.gallery">Galerija</span>
+            <span class="project-tag" data-i18n="tag.serbian">Srpski</span>
           </div>
           <div class="project-arrow">&#8599;</div>
         </div>
@@ -1320,14 +1359,14 @@
           <div class="project-number">02</div>
           <h3 class="project-name">Hargrove & Associates</h3>
           <div class="project-tags">
-            <span class="project-tag">Web Design</span>
-            <span class="project-tag">Dark Mode</span>
+            <span class="project-tag" data-i18n="tag.webDesign">Web Dizajn</span>
+            <span class="project-tag" data-i18n="tag.darkMode">Tamni Rezim</span>
             <span class="project-tag">GSAP</span>
-            <span class="project-tag">Before/After</span>
+            <span class="project-tag" data-i18n="tag.beforeAfter">Pre/Posle</span>
           </div>
           <div class="project-actions">
-            <div class="cs-indicator"><span class="cs-plus">+</span> Case Study</div>
-            <a href="https://lawfirmweb1.vercel.app" target="_blank" rel="noopener" class="project-visit" onclick="event.stopPropagation()">Visit Site &#8599;</a>
+            <div class="cs-indicator"><span class="cs-plus">+</span> <span data-i18n="work.caseStudy">Studija Slucaja</span></div>
+            <a href="https://lawfirmweb1.vercel.app" target="_blank" rel="noopener" class="project-visit" onclick="event.stopPropagation()"><span data-i18n="work.visitSite">Poseti Sajt</span> &#8599;</a>
           </div>
         </div>
         <div class="project-img-col">
@@ -1341,7 +1380,7 @@
         <div class="case-study-inner">
           <div class="grid md:grid-cols-2 gap-8 items-start">
             <div>
-              <p class="text-muted mb-4">NYC corporate law firm. Transformed from a 2008 Web 2.0 Joomla template with glossy buttons and green/gold colors into a dark, cinematic experience with cursor spotlight and sidebar navigation.</p>
+              <p class="text-muted mb-4" data-i18n="cs.law">Njujorska korporativna advokatska kancelarija. Transformisana iz 2008 Web 2.0 Joomla sablona sa sjajnim dugmicima i zeleno-zlatnim bojama u tamno, filmsko iskustvo sa osvetljenjem kursora i bocnom navigacijom.</p>
               <div class="flex flex-wrap gap-2 mt-4">
                 <span class="project-tag">New York City</span>
                 <span class="project-tag">2008 &#8594; 2026</span>
@@ -1364,14 +1403,14 @@
           <div class="project-number">03</div>
           <h3 class="project-name">Ember Roasters</h3>
           <div class="project-tags">
-            <span class="project-tag">Web Design</span>
-            <span class="project-tag">Scroll Animations</span>
+            <span class="project-tag" data-i18n="tag.webDesign">Web Dizajn</span>
+            <span class="project-tag" data-i18n="tag.scrollAnim">Skrol Animacije</span>
             <span class="project-tag">Video</span>
-            <span class="project-tag">Before/After</span>
+            <span class="project-tag" data-i18n="tag.beforeAfter">Pre/Posle</span>
           </div>
           <div class="project-actions">
-            <div class="cs-indicator"><span class="cs-plus">+</span> Case Study</div>
-            <a href="https://embercoffeevercel.vercel.app" target="_blank" rel="noopener" class="project-visit" onclick="event.stopPropagation()">Visit Site &#8599;</a>
+            <div class="cs-indicator"><span class="cs-plus">+</span> <span data-i18n="work.caseStudy">Studija Slucaja</span></div>
+            <a href="https://embercoffeevercel.vercel.app" target="_blank" rel="noopener" class="project-visit" onclick="event.stopPropagation()"><span data-i18n="work.visitSite">Poseti Sajt</span> &#8599;</a>
           </div>
         </div>
         <div class="project-img-col">
@@ -1385,7 +1424,7 @@
         <div class="case-study-inner">
           <div class="grid md:grid-cols-2 gap-8 items-start">
             <div>
-              <p class="text-muted mb-4">Portland specialty coffee roastery. From a generic 2014 ThemeForest template to a craft-focused experience with curtain-reveal hero, horizontal scroll origin journey, and interactive brewing guides.</p>
+              <p class="text-muted mb-4" data-i18n="cs.coffee">Portlandska specijalna praznica kafe. Od generickog 2014 ThemeForest sablona do iskustva fokusiranog na zanat sa zavesa-otkrivanje herojem, horizontalnim skrol putovanjem porekla i interaktivnim vodicima za pripremu.</p>
               <div class="flex flex-wrap gap-2 mt-4">
                 <span class="project-tag">Portland, Oregon</span>
                 <span class="project-tag">2014 &#8594; 2026</span>
@@ -1408,14 +1447,14 @@
           <div class="project-number">04</div>
           <h3 class="project-name">Bright Smile Dental</h3>
           <div class="project-tags">
-            <span class="project-tag">Web Design</span>
+            <span class="project-tag" data-i18n="tag.webDesign">Web Dizajn</span>
             <span class="project-tag">GSAP</span>
             <span class="project-tag">SEO</span>
-            <span class="project-tag">Before/After</span>
+            <span class="project-tag" data-i18n="tag.beforeAfter">Pre/Posle</span>
           </div>
           <div class="project-actions">
-            <div class="cs-indicator"><span class="cs-plus">+</span> Case Study</div>
-            <a href="https://dentistweb1.vercel.app" target="_blank" rel="noopener" class="project-visit" onclick="event.stopPropagation()">Visit Site &#8599;</a>
+            <div class="cs-indicator"><span class="cs-plus">+</span> <span data-i18n="work.caseStudy">Studija Slucaja</span></div>
+            <a href="https://dentistweb1.vercel.app" target="_blank" rel="noopener" class="project-visit" onclick="event.stopPropagation()"><span data-i18n="work.visitSite">Poseti Sajt</span> &#8599;</a>
           </div>
         </div>
         <div class="project-img-col">
@@ -1429,7 +1468,7 @@
         <div class="case-study-inner">
           <div class="grid md:grid-cols-2 gap-8 items-start">
             <div>
-              <p class="text-muted mb-4">Premium dental clinic in London's Harley Street. Complete redesign from a 2005-era table layout to a modern, conversion-focused experience with scroll-driven animations.</p>
+              <p class="text-muted mb-4" data-i18n="cs.dental">Premijum stomatoloska klinika u londonskoj Harley Street. Kompletna prerada iz 2005 tabelarnog rasporeda u moderno, konverzijsko iskustvo sa animacijama pokretanim skrolom.</p>
               <div class="flex flex-wrap gap-2 mt-4">
                 <span class="project-tag">Harley Street, London</span>
                 <span class="project-tag">2005 &#8594; 2026</span>
@@ -1452,9 +1491,9 @@
           <div class="project-number">05</div>
           <h3 class="project-name">SApuNiJA</h3>
           <div class="project-tags">
-            <span class="project-tag">Web Design</span>
-            <span class="project-tag">Video Loop</span>
-            <span class="project-tag">Serbian</span>
+            <span class="project-tag" data-i18n="tag.webDesign">Web Dizajn</span>
+            <span class="project-tag" data-i18n="tag.videoLoop">Video Petlja</span>
+            <span class="project-tag" data-i18n="tag.serbian">Srpski</span>
           </div>
           <div class="project-arrow">&#8599;</div>
         </div>
@@ -1473,39 +1512,39 @@
   <section class="py-32 px-4 md:px-8" id="services">
     <div class="max-w-6xl mx-auto">
       <div class="reveal">
-        <div class="section-eyebrow">What I Do</div>
-        <h2 class="section-heading mb-16">Services</h2>
+        <div class="section-eyebrow" data-i18n="services.eyebrow">Sta Radim</div>
+        <h2 class="section-heading mb-16" data-i18n="services.heading">Usluge</h2>
       </div>
 
       <div class="service-item reveal">
         <span class="service-number">01</span>
-        <h3 class="service-name">UI/UX Design</h3>
-        <p class="service-desc">User research, wireframes, and pixel-perfect interfaces. Every interaction designed for clarity and conversion.</p>
+        <h3 class="service-name" data-i18n="services.s1.name">UI/UX Dizajn</h3>
+        <p class="service-desc" data-i18n="services.s1.desc">Istrazivanje korisnika, wireframe-ovi i piksel-precizni interfejsi. Svaka interakcija dizajnirana za jasnocu i konverziju.</p>
       </div>
       <div class="service-item reveal">
         <span class="service-number">02</span>
-        <h3 class="service-name">Fullstack Development</h3>
-        <p class="service-desc">Frontend to backend, databases to deployment. Clean architecture, fast load times, scalable from day one.</p>
+        <h3 class="service-name" data-i18n="services.s2.name">Fullstack Razvoj</h3>
+        <p class="service-desc" data-i18n="services.s2.desc">Od frontend-a do backend-a, baze podataka do objave. Cista arhitektura, brzo ucitavanje, skalabilno od prvog dana.</p>
       </div>
       <div class="service-item reveal">
         <span class="service-number">03</span>
-        <h3 class="service-name">AI Agents</h3>
-        <p class="service-desc">Custom AI agents tailored to your business. Automate support, streamline workflows, and work smarter.</p>
+        <h3 class="service-name" data-i18n="services.s3.name">AI Agenti</h3>
+        <p class="service-desc" data-i18n="services.s3.desc">Prilagodjeni AI agenti za vas biznis. Automatizujte podrsku, unapredite procese i radite pametnije.</p>
       </div>
       <div class="service-item reveal">
         <span class="service-number">04</span>
-        <h3 class="service-name">SEO Optimization</h3>
-        <p class="service-desc">Semantic HTML, structured data, meta optimization. Built to rank from day one.</p>
+        <h3 class="service-name" data-i18n="services.s4.name">SEO Optimizacija</h3>
+        <p class="service-desc" data-i18n="services.s4.desc">Semanticki HTML, strukturirani podaci, meta optimizacija. Napravljen da rangira od prvog dana.</p>
       </div>
       <div class="service-item reveal">
         <span class="service-number">05</span>
-        <h3 class="service-name">Brand Identity</h3>
-        <p class="service-desc">Typography, color systems, and visual language that give your business a distinctive digital presence.</p>
+        <h3 class="service-name" data-i18n="services.s5.name">Vizuelni Identitet</h3>
+        <p class="service-desc" data-i18n="services.s5.desc">Tipografija, sistemi boja i vizuelni jezik koji daju vasem biznisu prepoznatljivo digitalno prisustvo.</p>
       </div>
       <div class="service-item reveal">
         <span class="service-number">06</span>
-        <h3 class="service-name">Automation</h3>
-        <p class="service-desc">Repetitive tasks handled by code. Data pipelines, integrations, and workflows that run without you.</p>
+        <h3 class="service-name" data-i18n="services.s6.name">Automatizacija</h3>
+        <p class="service-desc" data-i18n="services.s6.desc">Ponavljajuci zadaci obradjeni kodom. Protoci podataka, integracije i procesi koji rade bez vas.</p>
       </div>
     </div>
   </section>
@@ -1516,38 +1555,38 @@
   <section class="py-32 px-4 md:px-8" id="process">
     <div class="max-w-6xl mx-auto">
       <div class="reveal">
-        <div class="section-eyebrow">How I Work</div>
-        <h2 class="section-heading mb-6">Process</h2>
-        <p class="text-lg text-muted max-w-2xl mb-16">AI-accelerated workflow means faster iterations without sacrificing craft. What takes weeks elsewhere takes days with me.</p>
+        <div class="section-eyebrow" data-i18n="process.eyebrow">Kako Radim</div>
+        <h2 class="section-heading mb-6" data-i18n="process.heading">Proces</h2>
+        <p class="text-lg text-muted max-w-2xl mb-16" data-i18n="process.desc">AI-ubrzan proces znaci brze iteracije bez zrtvovanja kvaliteta. Ono sto drugde traje nedeljama, kod mene traje danima.</p>
       </div>
 
       <div class="process-grid">
         <div class="process-card reveal">
           <div class="process-card-inner">
-            <div class="process-step">Step 01</div>
-            <h3 class="process-title">Research</h3>
-            <p class="process-desc">Competitor analysis, audience mapping, and content strategy. I understand your market before touching a pixel.</p>
+            <div class="process-step" data-i18n="process.step1">Korak 01</div>
+            <h3 class="process-title" data-i18n="process.p1.title">Istrazivanje</h3>
+            <p class="process-desc" data-i18n="process.p1.desc">Analiza konkurencije, mapiranje publike i strategija sadrzaja. Razumem vase trziste pre nego sto dotaknem piksel.</p>
           </div>
         </div>
         <div class="process-card reveal" style="transition-delay: 100ms;">
           <div class="process-card-inner">
-            <div class="process-step">Step 02</div>
-            <h3 class="process-title">Design</h3>
-            <p class="process-desc">Custom layouts, typography systems, and interaction patterns. No templates, no shortcuts.</p>
+            <div class="process-step" data-i18n="process.step2">Korak 02</div>
+            <h3 class="process-title" data-i18n="process.p2.title">Dizajn</h3>
+            <p class="process-desc" data-i18n="process.p2.desc">Prilagodjeni rasporedi, tipografski sistemi i obrasci interakcije. Bez sablona, bez precica.</p>
           </div>
         </div>
         <div class="process-card reveal" style="transition-delay: 200ms;">
           <div class="process-card-inner">
-            <div class="process-step">Step 03</div>
-            <h3 class="process-title">Build</h3>
-            <p class="process-desc">Hand-coded HTML, CSS, and JavaScript. Scroll animations, responsive grids, optimized assets.</p>
+            <div class="process-step" data-i18n="process.step3">Korak 03</div>
+            <h3 class="process-title" data-i18n="process.p3.title">Izrada</h3>
+            <p class="process-desc" data-i18n="process.p3.desc">Rucno kodiran HTML, CSS i JavaScript. Skrol animacije, responsivni gridovi, optimizovani resursi.</p>
           </div>
         </div>
         <div class="process-card reveal" style="transition-delay: 300ms;">
           <div class="process-card-inner">
-            <div class="process-step">Step 04</div>
-            <h3 class="process-title">QA & Launch</h3>
-            <p class="process-desc">Multi-device testing at 4 breakpoints. SEO audit, performance check, then deploy.</p>
+            <div class="process-step" data-i18n="process.step4">Korak 04</div>
+            <h3 class="process-title" data-i18n="process.p4.title">QA i Objava</h3>
+            <p class="process-desc" data-i18n="process.p4.desc">Testiranje na vise uredjaja u 4 rezolucije. SEO audit, provera performansi, pa objava.</p>
           </div>
         </div>
       </div>
@@ -1556,19 +1595,19 @@
       <div class="stats-row grid grid-cols-4 gap-8 mt-24 reveal">
         <div class="text-center">
           <div class="stat-number" data-target="100" data-suffix="+">0</div>
-          <div class="stat-label">Projects Delivered</div>
+          <div class="stat-label" data-i18n="stats.projects">Zavrsenih Projekata</div>
         </div>
         <div class="text-center">
           <div class="stat-number" data-target="50" data-suffix="+">0</div>
-          <div class="stat-label">Happy Clients</div>
+          <div class="stat-label" data-i18n="stats.clients">Zadovoljnih Klijenata</div>
         </div>
         <div class="text-center">
           <div class="stat-number" data-target="24" data-suffix="hr">0</div>
-          <div class="stat-label">Avg Turnaround</div>
+          <div class="stat-label" data-i18n="stats.turnaround">Prosecno Vreme</div>
         </div>
         <div class="text-center">
           <div class="stat-number" data-target="100" data-suffix="%">0</div>
-          <div class="stat-label">Hand-Coded</div>
+          <div class="stat-label" data-i18n="stats.handCoded">Rucno Kodirano</div>
         </div>
       </div>
     </div>
@@ -1581,22 +1620,22 @@
     <div class="max-w-6xl mx-auto">
       <div class="grid md:grid-cols-2 gap-16">
         <div class="reveal">
-          <div class="section-eyebrow">About</div>
-          <h2 class="section-heading mb-6">The person behind the pixels.</h2>
-          <p class="text-lg text-muted leading-relaxed mb-6">
-            I'm a designer and developer who believes the web deserves better than templates. Every project is a chance to prove that intentional design and clean code can coexist.
+          <div class="section-eyebrow" data-i18n="about.eyebrow">O meni</div>
+          <h2 class="section-heading mb-6" data-i18n="about.heading">Covek iza piksela.</h2>
+          <p class="text-lg text-muted leading-relaxed mb-6" data-i18n="about.p1">
+            Dizajner i developer koji veruje da web zasluzuje bolje od sablona. Svaki projekat je prilika da dokazem da nameravan dizajn i cist kod mogu da koegzistiraju.
           </p>
-          <p class="text-muted leading-relaxed mb-8">
-            No generic hero sections. No stock photos. No cookie-cutter layouts. Every project gets the attention it deserves -- that's the standard.
+          <p class="text-muted leading-relaxed mb-8" data-i18n="about.p2">
+            Bez genericnih hero sekcija. Bez stock fotografija. Bez sablonskih rasporeda. Svaki projekat dobija paznju koju zasluzuje -- to je standard.
           </p>
           <a href="https://www.upwork.com/freelancers/~0113cf278bb78bba9c?viewMode=1" target="_blank" rel="noopener" class="inline-flex items-center gap-3 font-semibold text-white px-6 py-3 rounded-full transition-all duration-300" style="background: #14a800; font-size: 1rem; box-shadow: 0 4px 20px rgba(20, 168, 0, 0.3); letter-spacing: 0.02em;" onmouseenter="this.style.background='#1abf00'; this.style.boxShadow='0 6px 30px rgba(20, 168, 0, 0.45)'; this.style.transform='translateY(-2px)'" onmouseleave="this.style.background='#14a800'; this.style.boxShadow='0 4px 20px rgba(20, 168, 0, 0.3)'; this.style.transform='translateY(0)'">
             <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor"><path d="M18.561 13.158c-1.102 0-2.135-.467-3.074-1.227l.228-1.076.008-.042c.207-1.143.849-3.06 2.839-3.06 1.492 0 2.703 1.212 2.703 2.703 0 1.491-1.212 2.703-2.703 2.703zm0-8.14c-2.539 0-4.51 1.649-5.31 4.366-1.22-1.834-2.148-4.036-2.687-5.892H7.828v7.112c-.002 1.406-1.141 2.546-2.547 2.546-1.406 0-2.546-1.14-2.546-2.546V3.492H0v7.112c0 2.914 2.37 5.303 5.281 5.303 2.913 0 5.283-2.389 5.283-5.303v-1.19c.529 1.107 1.182 2.229 1.974 3.221l-1.673 7.873h2.797l1.213-5.71c1.063.679 2.285 1.109 3.686 1.109 3 0 5.439-2.452 5.439-5.45 0-3-2.439-5.439-5.439-5.439z"/></svg>
-            View Upwork Profile
+            <span data-i18n="about.upwork">Pogledaj Upwork Profil</span>
             <span>&#8599;</span>
           </a>
         </div>
         <div class="reveal" style="transition-delay: 150ms;">
-          <h3 class="text-sm font-semibold uppercase tracking-widest text-faint mb-6">Tools & Tech</h3>
+          <h3 class="text-sm font-semibold uppercase tracking-widest text-faint mb-6" data-i18n="about.toolsTitle">Alati i Tehnologije</h3>
           <div class="tools-grid mb-10">
             <span class="tool-pill">HTML / CSS</span>
             <span class="tool-pill">Tailwind CSS</span>
@@ -1608,12 +1647,12 @@
             <span class="tool-pill">Node.js</span>
             <span class="tool-pill">SEO</span>
             <span class="tool-pill">Figma</span>
-            <span class="tool-pill">And more</span>
+            <span class="tool-pill" data-i18n="about.andMore">I jos</span>
           </div>
-          <h3 class="text-sm font-semibold uppercase tracking-widest text-faint mb-6">Currently</h3>
+          <h3 class="text-sm font-semibold uppercase tracking-widest text-faint mb-6" data-i18n="about.currentlyTitle">Trenutno</h3>
           <div class="tools-grid">
-            <span class="tool-pill">Application Development</span>
-            <span class="tool-pill">Open for projects</span>
+            <span class="tool-pill" data-i18n="about.appDev">Razvoj Aplikacija</span>
+            <span class="tool-pill" data-i18n="about.openProjects">Otvoren za projekte</span>
           </div>
         </div>
       </div>
@@ -1626,23 +1665,23 @@
   <section class="py-32 px-4 md:px-8" id="contact">
     <div class="max-w-6xl mx-auto text-center">
       <div class="reveal">
-        <div class="section-eyebrow mx-auto justify-center">Get In Touch</div>
-        <h2 style="font-size: clamp(2.5rem, 7vw, 5rem); font-weight: 800; line-height: 1; letter-spacing: -0.03em; margin-bottom: 1.5rem;">
-          Let's build something.
+        <div class="section-eyebrow mx-auto justify-center" data-i18n="contact.eyebrow">Kontakt</div>
+        <h2 style="font-size: clamp(2.5rem, 7vw, 5rem); font-weight: 800; line-height: 1; letter-spacing: -0.03em; margin-bottom: 1.5rem;" data-i18n="contact.heading">
+          Hajde da napravimo nesto.
         </h2>
-        <p class="text-lg text-muted max-w-xl mx-auto mb-10">
-          Have a project in mind? I'd love to hear about it.
+        <p class="text-lg text-muted max-w-xl mx-auto mb-10" data-i18n="contact.desc">
+          Imate projekat na umu? Rado bih cuo o njemu.
         </p>
       </div>
 
       <div class="reveal" style="transition-delay: 100ms;">
         <span class="contact-email" id="contactEmail" onclick="copyEmail()" style="cursor: pointer;">ivosevic@lucastforge.com</span>
-        <p class="text-xs text-faint mt-3" id="copyHint">Click to copy</p>
+        <p class="text-xs text-faint mt-3" id="copyHint" data-i18n="contact.copy">Klikni da kopiras</p>
       </div>
 
       <div class="flex flex-wrap justify-center gap-3 mt-12 reveal" style="transition-delay: 200ms;">
         <a href="mailto:ivosevic@lucastforge.com" class="nav-cta" style="font-size: 0.9375rem; padding: 0.75rem 1.75rem;">
-          Start a Project
+          <span data-i18n="contact.startProject">Zapocni Projekat</span>
           <span class="arrow-circle" style="width: 1.5rem; height: 1.5rem;">&#8599;</span>
         </a>
       </div>
@@ -1654,14 +1693,14 @@
     <div class="max-w-6xl mx-auto flex flex-col md:flex-row items-center justify-between gap-6">
       <span class="nav-logo"><span class="nav-logo-lucast">Lucast</span><span class="nav-logo-forge">Forge</span></span>
       <nav class="flex flex-wrap justify-center gap-4 text-xs text-faint font-mono" aria-label="Footer navigation">
-        <a href="#home" class="hover:text-ink transition-colors duration-300">Home</a>
-        <a href="#work" class="hover:text-ink transition-colors duration-300">Portfolio</a>
-        <a href="#services" class="hover:text-ink transition-colors duration-300">Services</a>
-        <a href="#process" class="hover:text-ink transition-colors duration-300">Process</a>
-        <a href="#about" class="hover:text-ink transition-colors duration-300">About</a>
-        <a href="#contact" class="hover:text-ink transition-colors duration-300">Contact</a>
+        <a href="#home" class="hover:text-ink transition-colors duration-300" data-i18n="footer.home">Pocetna</a>
+        <a href="#work" class="hover:text-ink transition-colors duration-300" data-i18n="nav.portfolio">Portfolio</a>
+        <a href="#services" class="hover:text-ink transition-colors duration-300" data-i18n="nav.services">Usluge</a>
+        <a href="#process" class="hover:text-ink transition-colors duration-300" data-i18n="process.heading">Proces</a>
+        <a href="#about" class="hover:text-ink transition-colors duration-300" data-i18n="nav.about">O meni</a>
+        <a href="#contact" class="hover:text-ink transition-colors duration-300" data-i18n="contact.eyebrow">Kontakt</a>
       </nav>
-      <span class="text-xs text-faint font-mono">&copy; 2026 LucastForge. All rights reserved.</span>
+      <span class="text-xs text-faint font-mono" data-i18n="footer.copy">&copy; 2026 LucastForge. Sva prava zadrzana.</span>
     </div>
   </footer>
 
@@ -1669,6 +1708,220 @@
   <!-- JAVASCRIPT -->
   <!-- ============================================ -->
   <script>
+    // ---- LANGUAGE SYSTEM ----
+    const TRANSLATIONS = {
+      en: {
+        'nav.portfolio': 'Portfolio',
+        'nav.services': 'Services',
+        'nav.about': 'About',
+        'nav.cta': "Let's Talk",
+        'hero.srOnly': 'Freelance Web Design, Development & AI Agents Studio',
+        'hero.chip1': 'UI/UX Design',
+        'hero.chip2': 'Web Development',
+        'hero.chip3': 'Fullstack',
+        'hero.chip4': 'AI Agents',
+        'hero.chip5': 'SEO',
+        'hero.chip6': 'Automation',
+        'hero.sub1': 'Crafting Digital Experiences',
+        'hero.sub2': 'From Belgrade to the World',
+        'hero.sub3': 'Design That Converts',
+        'hero.sub4': 'Pixel-Perfect Builds',
+        'hero.scroll': 'Scroll to explore',
+        'intro.eyebrow': 'About',
+        'intro.heading': 'I build websites that <span class="text-muted">convert.</span>',
+        'intro.desc': "Every pixel is intentional. Every interaction is choreographed. I don't build websites that just look good -- I build websites that work. From concept to deployment, obsessively crafted.",
+        'work.eyebrow': 'Portfolio',
+        'work.heading': 'Projects',
+        'work.caseStudy': 'Case Study',
+        'work.visitSite': 'Visit Site',
+        'tag.webDesign': 'Web Design',
+        'tag.gallery': 'Gallery',
+        'tag.serbian': 'Serbian',
+        'tag.darkMode': 'Dark Mode',
+        'tag.beforeAfter': 'Before/After',
+        'tag.scrollAnim': 'Scroll Animations',
+        'tag.videoLoop': 'Video Loop',
+        'cs.law': "NYC corporate law firm. Transformed from a 2008 Web 2.0 Joomla template with glossy buttons and green/gold colors into a dark, cinematic experience with cursor spotlight and sidebar navigation.",
+        'cs.coffee': "Portland specialty coffee roastery. From a generic 2014 ThemeForest template to a craft-focused experience with curtain-reveal hero, horizontal scroll origin journey, and interactive brewing guides.",
+        'cs.dental': "Premium dental clinic in London's Harley Street. Complete redesign from a 2005-era table layout to a modern, conversion-focused experience with scroll-driven animations.",
+        'services.eyebrow': 'What I Do',
+        'services.heading': 'Services',
+        'services.s1.name': 'UI/UX Design',
+        'services.s1.desc': 'User research, wireframes, and pixel-perfect interfaces. Every interaction designed for clarity and conversion.',
+        'services.s2.name': 'Fullstack Development',
+        'services.s2.desc': 'Frontend to backend, databases to deployment. Clean architecture, fast load times, scalable from day one.',
+        'services.s3.name': 'AI Agents',
+        'services.s3.desc': 'Custom AI agents tailored to your business. Automate support, streamline workflows, and work smarter.',
+        'services.s4.name': 'SEO Optimization',
+        'services.s4.desc': 'Semantic HTML, structured data, meta optimization. Built to rank from day one.',
+        'services.s5.name': 'Brand Identity',
+        'services.s5.desc': 'Typography, color systems, and visual language that give your business a distinctive digital presence.',
+        'services.s6.name': 'Automation',
+        'services.s6.desc': 'Repetitive tasks handled by code. Data pipelines, integrations, and workflows that run without you.',
+        'process.eyebrow': 'How I Work',
+        'process.heading': 'Process',
+        'process.desc': 'AI-accelerated workflow means faster iterations without sacrificing craft. What takes weeks elsewhere takes days with me.',
+        'process.step1': 'Step 01',
+        'process.step2': 'Step 02',
+        'process.step3': 'Step 03',
+        'process.step4': 'Step 04',
+        'process.p1.title': 'Research',
+        'process.p1.desc': 'Competitor analysis, audience mapping, and content strategy. I understand your market before touching a pixel.',
+        'process.p2.title': 'Design',
+        'process.p2.desc': 'Custom layouts, typography systems, and interaction patterns. No templates, no shortcuts.',
+        'process.p3.title': 'Build',
+        'process.p3.desc': 'Hand-coded HTML, CSS, and JavaScript. Scroll animations, responsive grids, optimized assets.',
+        'process.p4.title': 'QA & Launch',
+        'process.p4.desc': 'Multi-device testing at 4 breakpoints. SEO audit, performance check, then deploy.',
+        'stats.projects': 'Projects Delivered',
+        'stats.clients': 'Happy Clients',
+        'stats.turnaround': 'Avg Turnaround',
+        'stats.handCoded': 'Hand-Coded',
+        'about.eyebrow': 'About',
+        'about.heading': 'The person behind the pixels.',
+        'about.p1': "I'm a designer and developer who believes the web deserves better than templates. Every project is a chance to prove that intentional design and clean code can coexist.",
+        'about.p2': "No generic hero sections. No stock photos. No cookie-cutter layouts. Every project gets the attention it deserves -- that's the standard.",
+        'about.upwork': 'View Upwork Profile',
+        'about.toolsTitle': 'Tools & Tech',
+        'about.andMore': 'And more',
+        'about.currentlyTitle': 'Currently',
+        'about.appDev': 'Application Development',
+        'about.openProjects': 'Open for projects',
+        'contact.eyebrow': 'Get In Touch',
+        'contact.heading': "Let's build something.",
+        'contact.desc': "Have a project in mind? I'd love to hear about it.",
+        'contact.copy': 'Click to copy',
+        'contact.copied': 'Copied!',
+        'contact.startProject': 'Start a Project',
+        'footer.home': 'Home',
+        'footer.copy': '\u00a9 2026 LucastForge. All rights reserved.',
+      },
+      sr: {
+        'nav.portfolio': 'Portfolio',
+        'nav.services': 'Usluge',
+        'nav.about': 'O meni',
+        'nav.cta': 'Razgovarajmo',
+        'hero.srOnly': 'Freelance studio za dizajn, izradu sajtova i AI agente',
+        'hero.chip1': 'UI/UX Dizajn',
+        'hero.chip2': 'Izrada Sajtova',
+        'hero.chip3': 'Fullstack',
+        'hero.chip4': 'AI Agenti',
+        'hero.chip5': 'SEO',
+        'hero.chip6': 'Automatizacija',
+        'hero.sub1': 'Stvaramo Digitalna Iskustva',
+        'hero.sub2': 'Iz Beograda za Ceo Svet',
+        'hero.sub3': 'Dizajn Koji Konvertuje',
+        'hero.sub4': 'Piksel-Precizna Izrada',
+        'hero.scroll': 'Skrolujte da istrazite',
+        'intro.eyebrow': 'O meni',
+        'intro.heading': 'Pravim sajtove koji <span class="text-muted">konvertuju.</span>',
+        'intro.desc': 'Svaki piksel je nameran. Svaka interakcija je koreografisana. Ne pravim sajtove koji samo dobro izgledaju -- pravim sajtove koji rade. Od koncepta do objave, opsesivno izradjeno.',
+        'work.eyebrow': 'Portfolio',
+        'work.heading': 'Projekti',
+        'work.caseStudy': 'Studija Slucaja',
+        'work.visitSite': 'Poseti Sajt',
+        'tag.webDesign': 'Web Dizajn',
+        'tag.gallery': 'Galerija',
+        'tag.serbian': 'Srpski',
+        'tag.darkMode': 'Tamni Rezim',
+        'tag.beforeAfter': 'Pre/Posle',
+        'tag.scrollAnim': 'Skrol Animacije',
+        'tag.videoLoop': 'Video Petlja',
+        'cs.law': 'Njujorska korporativna advokatska kancelarija. Transformisana iz 2008 Web 2.0 Joomla sablona sa sjajnim dugmicima i zeleno-zlatnim bojama u tamno, filmsko iskustvo sa osvetljenjem kursora i bocnom navigacijom.',
+        'cs.coffee': 'Portlandska specijalna praznica kafe. Od generickog 2014 ThemeForest sablona do iskustva fokusiranog na zanat sa zavesa-otkrivanje herojem, horizontalnim skrol putovanjem porekla i interaktivnim vodicima za pripremu.',
+        'cs.dental': 'Premijum stomatoloska klinika u londonskoj Harley Street. Kompletna prerada iz 2005 tabelarnog rasporeda u moderno, konverzijsko iskustvo sa animacijama pokretanim skrolom.',
+        'services.eyebrow': 'Sta Radim',
+        'services.heading': 'Usluge',
+        'services.s1.name': 'UI/UX Dizajn',
+        'services.s1.desc': 'Istrazivanje korisnika, wireframe-ovi i piksel-precizni interfejsi. Svaka interakcija dizajnirana za jasnocu i konverziju.',
+        'services.s2.name': 'Fullstack Razvoj',
+        'services.s2.desc': 'Od frontend-a do backend-a, baze podataka do objave. Cista arhitektura, brzo ucitavanje, skalabilno od prvog dana.',
+        'services.s3.name': 'AI Agenti',
+        'services.s3.desc': 'Prilagodjeni AI agenti za vas biznis. Automatizujte podrsku, unapredite procese i radite pametnije.',
+        'services.s4.name': 'SEO Optimizacija',
+        'services.s4.desc': 'Semanticki HTML, strukturirani podaci, meta optimizacija. Napravljen da rangira od prvog dana.',
+        'services.s5.name': 'Vizuelni Identitet',
+        'services.s5.desc': 'Tipografija, sistemi boja i vizuelni jezik koji daju vasem biznisu prepoznatljivo digitalno prisustvo.',
+        'services.s6.name': 'Automatizacija',
+        'services.s6.desc': 'Ponavljajuci zadaci obradjeni kodom. Protoci podataka, integracije i procesi koji rade bez vas.',
+        'process.eyebrow': 'Kako Radim',
+        'process.heading': 'Proces',
+        'process.desc': 'AI-ubrzan proces znaci brze iteracije bez zrtvovanja kvaliteta. Ono sto drugde traje nedeljama, kod mene traje danima.',
+        'process.step1': 'Korak 01',
+        'process.step2': 'Korak 02',
+        'process.step3': 'Korak 03',
+        'process.step4': 'Korak 04',
+        'process.p1.title': 'Istrazivanje',
+        'process.p1.desc': 'Analiza konkurencije, mapiranje publike i strategija sadrzaja. Razumem vase trziste pre nego sto dotaknem piksel.',
+        'process.p2.title': 'Dizajn',
+        'process.p2.desc': 'Prilagodjeni rasporedi, tipografski sistemi i obrasci interakcije. Bez sablona, bez precica.',
+        'process.p3.title': 'Izrada',
+        'process.p3.desc': 'Rucno kodiran HTML, CSS i JavaScript. Skrol animacije, responsivni gridovi, optimizovani resursi.',
+        'process.p4.title': 'QA i Objava',
+        'process.p4.desc': 'Testiranje na vise uredjaja u 4 rezolucije. SEO audit, provera performansi, pa objava.',
+        'stats.projects': 'Zavrsenih Projekata',
+        'stats.clients': 'Zadovoljnih Klijenata',
+        'stats.turnaround': 'Prosecno Vreme',
+        'stats.handCoded': 'Rucno Kodirano',
+        'about.eyebrow': 'O meni',
+        'about.heading': 'Covek iza piksela.',
+        'about.p1': 'Dizajner i developer koji veruje da web zasluzuje bolje od sablona. Svaki projekat je prilika da dokazem da nameravan dizajn i cist kod mogu da koegzistiraju.',
+        'about.p2': 'Bez genericnih hero sekcija. Bez stock fotografija. Bez sablonskih rasporeda. Svaki projekat dobija paznju koju zasluzuje -- to je standard.',
+        'about.upwork': 'Pogledaj Upwork Profil',
+        'about.toolsTitle': 'Alati i Tehnologije',
+        'about.andMore': 'I jos',
+        'about.currentlyTitle': 'Trenutno',
+        'about.appDev': 'Razvoj Aplikacija',
+        'about.openProjects': 'Otvoren za projekte',
+        'contact.eyebrow': 'Kontakt',
+        'contact.heading': 'Hajde da napravimo nesto.',
+        'contact.desc': 'Imate projekat na umu? Rado bih cuo o njemu.',
+        'contact.copy': 'Klikni da kopiras',
+        'contact.copied': 'Kopirano!',
+        'contact.startProject': 'Zapocni Projekat',
+        'footer.home': 'Pocetna',
+        'footer.copy': '\u00a9 2026 LucastForge. Sva prava zadrzana.',
+      },
+    };
+
+    let currentLang = localStorage.getItem('lf-lang') || 'sr';
+
+    function applyLang(lang) {
+      currentLang = lang;
+      localStorage.setItem('lf-lang', lang);
+      document.documentElement.lang = lang;
+
+      // Update toggle buttons (desktop + mobile)
+      ['', 'Mobile'].forEach(function(suffix) {
+        const srEl = document.getElementById('langSr' + suffix);
+        const enEl = document.getElementById('langEn' + suffix);
+        if (srEl && enEl) {
+          srEl.classList.toggle('lang-active', lang === 'sr');
+          enEl.classList.toggle('lang-active', lang === 'en');
+        }
+      });
+
+      // Update all data-i18n elements
+      // Safe: translations are hardcoded strings from our own TRANSLATIONS object, not user input
+      const dict = TRANSLATIONS[lang];
+      document.querySelectorAll('[data-i18n]').forEach(function(el) {
+        const key = el.getAttribute('data-i18n');
+        if (dict[key] !== undefined) {
+          el.innerHTML = dict[key];
+        }
+      });
+    }
+
+    function toggleLang() {
+      applyLang(currentLang === 'sr' ? 'en' : 'sr');
+    }
+
+    // Apply saved language on load (before paint)
+    if (currentLang === 'en') {
+      // Default HTML is Serbian, so only apply if English was saved
+      document.addEventListener('DOMContentLoaded', function() { applyLang('en'); });
+    }
+
     // ---- 3D EARTH GLOBE (Three.js) ----
     // Globe is initialized from a module script below (importmap requires type=module)
     // This flag lets the loader know when the globe texture is ready
@@ -1928,8 +2181,8 @@
     function copyEmail() {
       navigator.clipboard.writeText('ivosevic@lucastforge.com').then(() => {
         const el = document.getElementById('copyHint');
-        el.textContent = 'Copied!';
-        setTimeout(() => el.textContent = 'Click to copy', 2000);
+        el.textContent = TRANSLATIONS[currentLang]['contact.copied'];
+        setTimeout(() => { el.textContent = TRANSLATIONS[currentLang]['contact.copy']; }, 2000);
       });
     }
 
